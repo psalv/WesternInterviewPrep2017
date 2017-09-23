@@ -8,7 +8,8 @@ class Solution(object):
     def __init__(self):
         return
 
-    def removeNthFromEnd(self, head, n):
+    # This removes the node with value n but we want to remove the nth node
+    def removeValFromEnd(self, head, n):
         """
         :type head: ListNode
         :type n: int
@@ -27,6 +28,37 @@ class Solution(object):
             self.removeNthFromEnd(head.next, n)
 
         return head
+
+    def removeNthFromEnd(self, head, n):
+        """
+        :type head: ListNode
+        :type n: int
+        :rtype: ListNode
+        """
+        pos = head
+        count = 1
+        while pos.next is not None:
+            count += 1
+            pos = pos.next
+
+        if n > count:
+            print("That node does not exist.")
+            return
+
+        nodeToDelete = count - n
+
+        if nodeToDelete is 0:
+            return head.next
+
+
+        pos = head
+        for i in range(nodeToDelete - 1):
+            pos = pos.next
+
+        pos.next = pos.next.next
+
+        return head
+
 
     def printLinkedList(self, head):
         if head is not None:
@@ -53,16 +85,21 @@ class Solution(object):
 
 print("Front of list:")
 testA = Solution.createMockLinkedList(Solution())
-Solution.printLinkedList(Solution(), Solution.removeNthFromEnd(Solution(), testA, 1))
+Solution.printLinkedList(Solution(), Solution.removeNthFromEnd(Solution(), testA, 6))
 
-print("\nMiddle of list:")
+print("\nMiddle of list A: ")
 testB = Solution.createMockLinkedList(Solution())
-Solution.printLinkedList(Solution(), Solution.removeNthFromEnd(Solution(), testB, 8))
+Solution.printLinkedList(Solution(), Solution.removeNthFromEnd(Solution(), testB, 5))
+
+print("\nMiddle of list B:")
+testB = Solution.createMockLinkedList(Solution())
+Solution.printLinkedList(Solution(), Solution.removeNthFromEnd(Solution(), testB, 3))
 
 print("\nEnd of list:")
 testC = Solution.createMockLinkedList(Solution())
-Solution.printLinkedList(Solution(), Solution.removeNthFromEnd(Solution(), testC, 32))
+Solution.printLinkedList(Solution(), Solution.removeNthFromEnd(Solution(), testC, 1))
 
 print("\nNot in list:")
 testC = Solution.createMockLinkedList(Solution())
 Solution.printLinkedList(Solution(), Solution.removeNthFromEnd(Solution(), testC, 9))
+

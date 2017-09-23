@@ -32,4 +32,9 @@ print(Solution.maximumSwap(None, 129))
 print(Solution.maximumSwap(None, 193))
 print(Solution.maximumSwap(None, 321))
 
+# TODO ! Deal with case when taking the first isn't necessarily the best
+print(Solution.maximumSwap(None, 1993))
+
+
+
 
