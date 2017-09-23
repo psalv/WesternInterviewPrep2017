@@ -11,10 +11,11 @@ class Solution(object):
         for currentDigit in range(len(numArray)):
             largest = -1
             largestIndex = -1
-            for examineDigit in range(currentDigit + 1, len(numArray)):
+            for examineDigit in range(len(numArray) - 1, currentDigit, -1):
                 if numArray[currentDigit] < numArray[examineDigit] and largest < numArray[examineDigit]:
                     largest = numArray[examineDigit]
                     largestIndex = examineDigit
+
             if largest != -1:
                 temp = numArray[currentDigit]
                 numArray[currentDigit] = largest
@@ -31,8 +32,6 @@ class Solution(object):
 print(Solution.maximumSwap(None, 129))
 print(Solution.maximumSwap(None, 193))
 print(Solution.maximumSwap(None, 321))
-
-# TODO ! Deal with case when taking the first isn't necessarily the best
 print(Solution.maximumSwap(None, 1993))
 
 
