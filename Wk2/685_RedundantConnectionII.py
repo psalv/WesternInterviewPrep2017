@@ -84,15 +84,12 @@ class Solution(object):
             # If all items were visited and there was a redundant edge
             if len(seen) == total and redundant is not None:
 
-                print("inside")
                 # Start from the right
                 # Remove an edge and see if everything is still connected.
 
                 for edgeIndex in range(len(edges) - 1, -1, -1):
                     if edges[edgeIndex][1] == redundant:
                         currentEdge = edges[edgeIndex]
-
-                        print(currentEdge)
 
                         nodes[currentEdge[0]].edges.remove(nodes[currentEdge[1]])
 
@@ -126,6 +123,9 @@ class Solution(object):
         return len(seen) == total
 
 
-# test = [[1, 2], [1, 3], [2, 3]]
-# test = [[5,2],[5,1],[3,1],[3,4],[3,5]]
-print(Solution.findRedundantDirectedConnection(Solution(), test))
+def test():
+    test = [[1, 2], [1, 3], [2, 3]]
+    # test = [[5,2],[5,1],[3,1],[3,4],[3,5]]
+    print(Solution.findRedundantDirectedConnection(Solution(), test))
+
+test()
