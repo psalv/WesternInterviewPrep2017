@@ -7,9 +7,6 @@ class Interval(object):
         self.start = s
         self.end = e
 
-    def getStart(self):
-        return self.start
-
     def __repr__(self):
         return "(" + str(self.start) + ", " + str(self.end) + ")"
 
@@ -19,7 +16,7 @@ def mergeSort(toSort):
     n = int(len(toSort))
 
 
-    if n == 1:
+    if n <= 1:
         return toSort
 
     new1 = mergeSort(toSort[0: int(math.floor(n / 2))])
@@ -42,7 +39,7 @@ def merge(l1, l2):
             ans += l2[j:]
             return ans
 
-        if l1[i].getStart() >= l2[j].getStart():
+        if l1[i].start >= l2[j].start:
             ans.append(l2[j])
             j += 1
         else:
@@ -57,18 +54,28 @@ class Solution(object):
         :rtype: List[Interval]
         """
         elements = mergeSort(intervals)
-        print(elements)
+        merged = []
+        for i in elements:
+            if merged == []:
+                print(i)
+                merged.append(i)
+            else:
+                print(i)
+                if i.start <= merged[-1].end:
+                    merged[-1].end = max(merged[-1].end, i.end)
+                else:
+                    merged.append(i)
 
+        return merged
 
 
 def test():
-    a = Interval(1, 3)
-    b = Interval(2, 6)
-    c = Interval(8, 10)
-    d = Interval(15, 18)
+    a = Interval(1, 4)
+    b = Interval(1, 5)
 
-    intervals = [c, a, b, d]
+    intervals = [a, b]
 
-    Solution.merge(Solution(), intervals)
+    print(Solution.merge(Solution(), intervals))
+
 
 test()
