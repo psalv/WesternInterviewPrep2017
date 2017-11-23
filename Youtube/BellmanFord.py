@@ -32,6 +32,7 @@ def heapify(ar):
     return ar
 
 
+
 class node(object):
     def __init__(self, v):
         self.val = v
@@ -57,27 +58,28 @@ def relax(u, v, w):
     return False
 
 
-# This is an all end points single source shortest path detection problem
-# Meaning that you give the source and all of the connected components will have their
-# d values set to the minimum one can traverse them to
-def dijkstra(vertices, source):
+def propogateUndefined(v):
+    if v.pi == "UND":
+        return
+
+    v.pi = "UND"
+    for i in v.edges:
+        propogateUndefined(i)
+
+
+def bellmanFord(vertices, source):
     source.d = 0
-    heap = heapify(vertices)
-    heap = heap[:]
 
-    seen = set()
-    while len(heap) > 0:
-        cur = heap[0]
-        seen.add(cur)
+    # initially relax all of the edges
+    for i in vertices:
+        for j in i.edges:
+            relax(i, j, i.edges[j])
 
-        heap[0] = heap[-1]
-        heap.pop()
-        for i in cur.edges:
-            if not (i in seen):
-                relax(cur, i, cur.edges[i])
-
-        if len(heap) > 1:
-            heap = heapify(heap)
+    # see if we can relax them any more, if so set as undefined
+    for i in vertices:
+        for j in i.edges:
+            if j.d > j.d + i.edges[j]:
+                propogateUndefined(j)
 
     for i in vertices:
         print()
@@ -93,6 +95,7 @@ def buildGraph():
     d = node('d')
     e = node('e')
     f = node('f')
+    g = node('g')
 
     a.addEdge(b, 1)
     a.addEdge(c, 10)
@@ -101,8 +104,10 @@ def buildGraph():
     d.addEdge(f, 3)
     c.addEdge(e, 10)
     e.addEdge(f, 1)
+    f.addEdge(g, 1)     # should be undefined
+    g.addEdge(f, -10)   # should be undefined
 
-    dijkstra([a, b, c, d, e, f], a)
+    bellmanFord([a, b, c, d, e, f, g], a)
 
 
 buildGraph()
