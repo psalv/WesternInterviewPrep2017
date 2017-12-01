@@ -52,7 +52,6 @@ class Trie(object):
             else:
                 temp = TrieNode()
                 temp.incrementPrefix()
-                # cur.incrementPrefix()
                 cur.getChildren()[i] = temp
                 cur = temp
 
