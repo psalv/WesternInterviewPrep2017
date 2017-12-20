@@ -18,15 +18,15 @@ def binarySearch(ar, i):
 
 
 def testSearchAlgorithm():
-    numbers = [23, 1, 43, 232, 12, -3, 1, 432, 123, 12]
-    numbers = sorted(numbers)
+    x = [1, 34, 465, 898998, 23939393]
 
-    print(numbers)
+    print(0 == binarysearch(x, 1))
+    print(1 == binarysearch(x, 34))
+    print(4 == binarysearch(x, 23939393))
+    print(-1 == binarysearch(x, 0))
+    print(-1 == binarysearch(x, 23939394))
 
-    print(binarySearch(numbers, -3))
-    print(binarySearch(numbers, 123))
-    print(binarySearch(numbers, 432))
-    print(binarySearch(numbers, 1230))
+    print(-1 == binarysearch([], 1))
 
 
 testSearchAlgorithm()
