@@ -1,8 +1,6 @@
 
 """
 
-
-
 Questions for the coach:
 
     How much interaction can I expect between an interviewer and myself during the interview?
