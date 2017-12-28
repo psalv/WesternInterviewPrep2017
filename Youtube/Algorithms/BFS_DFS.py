@@ -15,63 +15,57 @@ class node(object):
 
 def BFS(root, end):
     seen = set()
+    seen.add(root)
     q = [root]
 
     while len(q) > 0:
         cur = q[0]
         q = q[1:]
-        seen.add(cur)
 
         if cur.val == end:
             return True
 
         for i in cur.edges:
             if not (i in seen):
+                seen.add(i)
                 q.append(i)
                 i.pi = cur
 
     return False
 
 
-def solveDFS(cur, end, seen):
-    if cur.val == end:
-        return True
+def dfsVisit(cur, search, seen):
     seen.add(cur)
 
-    for i in cur.edges:
-        if not (i in seen):
-            i.pi = cur
-            if solveDFS(i, end, seen):
-                return True
+    if cur.val == search:
+        return cur
+
+    for v in cur.edges:
+        if not (v in seen):
+            v.pi = cur
+            ans = dfsVisit(v, search, seen)
+            if ans is not False:
+                return ans
 
     return False
 
 
-def DFS(root, end):
+def dfs(cur, search):
     seen = set()
-
-    if root.val == end:
-        return True
-
-    for i in root.edges:
-        if not (i in seen):
-            i.pi = root
-            if solveDFS(i, end, seen):
-                return True
-
-    return False
+    return dfsVisit(cur, search, seen)
 
 
 def printPath(end):
     build = ""
     cur = end
     build += str(cur)
-    while cur.pi != None:
+    while cur.pi is not None:
         build += " <- " + str(cur.pi)
         cur = cur.pi
 
     print(build)
     print()
+
 
 def buildGraph():
     a = node('a')
@@ -88,32 +82,25 @@ def buildGraph():
     c.addEdge(e)
     e.addEdge(f)
 
-
     print(BFS(a, "d"))
     printPath(d)
 
     print(BFS(b, "d"))
     printPath(b)
 
-
-    print(BFS(b, "a"))
-    print(BFS(a, "k"))
-
-
-
+    print(not BFS(b, "a"))
+    print(not BFS(a, "k"))
 
     print()
 
-    print(DFS(a, "d"))
+    print(dfs(a, "d"))
     printPath(d)
 
-
-    print(DFS(b, "d"))
+    print(dfs(b, "d"))
     printPath(b)
 
-
-    print(DFS(b, "a"))
-    print(DFS(a, "k"))
+    print(not dfs(b, "a"))
+    print(not dfs(a, "k"))
 
 
 buildGraph()
