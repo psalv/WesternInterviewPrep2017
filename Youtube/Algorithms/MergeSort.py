@@ -3,8 +3,8 @@ def mergeSort(ar):
     if len(ar) <= 1:
         return ar
 
-    l = mergeSort(ar[:int(len(ar) / 2)])
-    r = mergeSort(ar[int(len(ar) / 2):])
+    l = mergeSort(ar[:int(len(ar) // 2)])
+    r = mergeSort(ar[int(len(ar) // 2):])
 
     return merge(l, r)
 

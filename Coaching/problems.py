@@ -27,7 +27,7 @@ They are looking for:
 
 
 
-At the beginning of the interview are generally questions, these are opportunities to be likable,
+At the beginning of the interview are general questions, these are opportunities to be likable,
 but the interview is a fixed length so get to the technically questions quickly.
 
 Brain teaser questions have been banned at Google.
@@ -38,8 +38,8 @@ Know your big oh! Give it without even being asked, this is explicitly looked fo
 
 They aren't looking for the answer, they are looking for how you solve the problem: your thought process is the key.
 
-Will often ask for successive iterations of opotimization,
-so don't try to start with an ooptimal/clever solution, this can come afterwards.
+Will often ask for successive iterations of optimization,
+so don't try to start with an optimal/clever solution, this can come afterwards.
 
 
 
